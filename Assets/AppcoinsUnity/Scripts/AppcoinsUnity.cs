@@ -1,16 +1,14 @@
 ﻿//created by Lukmon Agboola(Codeberg)
 //Modified by Aptoide
 //Note: do not change anything here as it may break the workings of the plugin else you're very sure of what you're doing.
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Aptoide.AppcoinsUnity
 {
@@ -29,8 +27,6 @@ namespace Aptoide.AppcoinsUnity
         public AppcoinsSku[] products;
         [Header("Add your purchaser object here")]
         public AppcoinsPurchaser purchaserObject;
-
-        private string NAME = "NAME";
         private string previousName = null;
 
         private string POA = "POA";
@@ -50,6 +46,11 @@ namespace Aptoide.AppcoinsUnity
         // Use this for initialization
         void Start()
         {
+#if UNITY_EDITOR
+            if (enablePOA)
+                EditorUtility.DisplayDialog("AppCoins Unity Integration", "PoA is enabled and should have started now", "OK");
+#else
+
             //get refference to java class
             _class = new AndroidJavaClass("com.aptoide.appcoinsunity.UnityAppcoins");
 
@@ -64,7 +65,7 @@ namespace Aptoide.AppcoinsUnity
 
             //start sdk
             _class.CallStatic("start");
-
+#endif
         }
 
         // This function is called when this script is loaded or some variable changes its value.
@@ -94,10 +95,21 @@ namespace Aptoide.AppcoinsUnity
         //called to add all skus specified in the inpector window.
         private void addAllSKUs()
         {
+            bool failed = false;
             for (int i = 0; i < products.Length; i++)
             {
-                _class.CallStatic("addNewSku", products[i].Name, products[i].SKUID, products[i].Price);
+                AppcoinsSku product = products[i];
+                if (product != null)
+                    _class.CallStatic("addNewSku", product.Name, product.SKUID, product.Price);
+                else
+                    failed = true;
             }
+
+#if UNITY_EDITOR
+                if (failed)
+                    EditorUtility.DisplayDialog("AppCoins Unity Integration", "Warning: You have null products on AppCoinsUnity objects products list", "OK");
+#endif
+
         }
 
         //method used in making purchase
@@ -303,4 +315,4 @@ namespace Aptoide.AppcoinsUnity
             return a;
         }
     }
-}
+} //namespace Aptoide.AppcoinsUnity
