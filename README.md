@@ -11,11 +11,11 @@ This is a very simple demonstration of how you can change your game's logic to i
 Process of integration:
 1. Download _AppCoins Unity_ package [here](https://github.com/AppStoreFoundation/asf-unity-plugin/releases).
 2. At Unity open your game's folder and import the _AppCoins Unity_ package you just downloaded. You can do this by clicking in Assets -> Import Package -> Custom Package... .You have to import everything except the _/Appcoins/Example_ and _/Resources/icons_ folders that are optional.
-![picture](Screenshots/Appcoins_2.gif)
+![picture](Screenshots/AppCoins_2.gif)
 
 3. Drag and drop to your hierarchy window the 'Assets/AppCoins/Prefabs/AppCoinsUnity.prefab' prefab file.
  **Note:If you want, you can change _ASFAppcoinsUnity_ prefab name to whatever you want.**
-![picture](Screenshots/Appcoins_3.gif)
+![picture](Screenshots/AppCoins_3.gif)
 
 4. Open AppcoinsUnity game object in the inspector window and put the wallet's address where you want to receive your appcoins in the _Receiving Address_ slot.
 
@@ -111,6 +111,6 @@ public sealed class GameManager : MonoBehaviour
 ```
 
 6. Create an empty game object with the name you want (we named it _Purchaser_) and add a component with the script that has the _Purchaser_ class. Then drag and drop it to the slot named _Purchaser Object_ in _AppcoinsUnity_ game object and _Game Manager_ object.
-![picture](Screenshots/Appcoins_5.gif)
+![picture](Screenshots/AppCoins_5.gif)
 
 7. Your game is ready to rock!
