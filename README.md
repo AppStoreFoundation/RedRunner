@@ -1,6 +1,6 @@
 # Red Runner
 
-We created this project to give you another example of how you can integrate the _Appcoins_ plugin to your game. For this example we are using an open source game called __Red Runner__. You can check their official page [here](https://github.com/BayatGames/RedRunner).
+We created this project to give you another example of how you can integrate the _ASF Appcoins_ plugin to your game. For this example we are using an open source game called __Red Runner__. You can check their official page [here](https://github.com/BayatGames/RedRunner).
 <p align="center">
   <img src="https://img.itch.zone/aW1hZ2UvMTU4NTg4LzcyNzg3Mi5wbmc=/original/AU5pWY.png" aref = />
 </p>
@@ -13,14 +13,14 @@ Process of integration:
 2. At Unity open your game's folder and import the _AppCoins Unity_ package you just downloaded. You can do this by clicking in Assets -> Import Package -> Custom Package... .You have to import everything except the _/Appcoins/Example_ and _/Resources/icons_ folders that are optional.
 ![picture](Screenshots/AppCoins_2.gif)
 
-3. Drag and drop to your hierarchy window the 'Assets/AppCoins/Prefabs/AppCoinsUnity.prefab' prefab file.
+3. Drag and drop to your hierarchy window the 'Assets/AppCoins/Prefabs/ASFAppCoinsUnity.prefab' prefab file.
  **Note:If you want, you can change _ASFAppcoinsUnity_ prefab name to whatever you want.**
 ![picture](Screenshots/AppCoins_3.gif)
 
-4. Open AppcoinsUnity game object in the inspector window and put the wallet's address where you want to receive your appcoins in the _Receiving Address_ slot.
+4. Open ASFAppcoinsUnity game object in the inspector window and put the wallet's address where you want to receive your appcoins in the _Receiving Address_ slot.
 
 5. The game logic we are changing is when the restart button is pressed we will redirect the game's flow, so on _OnReset_ method in _GameManager_ class we will call the _Purchaser's buyContinue_ method to deal with the purchase. (The _Purchaser_ class has to derive from _AppcoinsPurchaser_ class).
-**Note: _RegisterSKUs_ method has to be override by your _Purchaser_ class to register all the SKUs you want. This method will be called by AppcoinsUnity in the Start method. To register a specific SKU you can call the method _AddSKU_, that receives a _AppcoinsSKU_ object, already implemented by _AppcoinsPurchaser_.**
+**Note: _RegisterSKUs_ method has to be overridden by your _Purchaser_ class to register all the SKUs you want. This method will be called by AppcoinsUnity in the Start method. To register a specific SKU you can call the method _AddSKU_, that receives a _AppcoinsSKU_ object, already implemented by _AppcoinsPurchaser_.**
 
 _Purchaser.cs_:
 
@@ -110,7 +110,7 @@ public sealed class GameManager : MonoBehaviour
 }
 ```
 
-6. Create an empty game object with the name you want (we named it _Purchaser_) and add a component with the script that has the _Purchaser_ class. Then drag and drop it to the slot named _Purchaser Object_ in _AppcoinsUnity_ game object and _Game Manager_ object.
+6. Create an empty game object with the name you want (we named it _Purchaser_) and add a component with the script that has the _Purchaser_ class. Then drag and drop it to the slot named _Purchaser Object_ in _ASFAppcoinsUnity_ game object and _Game Manager_ object.
 ![picture](Screenshots/AppCoins_5.gif)
 
 7. Your game is ready to rock!
